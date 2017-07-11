@@ -1,5 +1,4 @@
 PROJECT := caffe
-
 CONFIG_FILE := Makefile.config
 # Explicitly check for the config file, otherwise make -k will proceed anyway.
 ifeq ($(wildcard $(CONFIG_FILE)),)
@@ -197,9 +196,9 @@ endif
 ifeq ($(USE_OPENCV), 1)
 	LIBRARIES += opencv_core opencv_highgui opencv_imgproc
 
-	ifeq ($(OPENCV_VERSION), 3)
-		LIBRARIES += opencv_imgcodecs
-	endif
+	# ifeq ($(OPENCV_VERSION), 3)
+	# 	LIBRARIES += opencv_imgcodecs
+	# endif
 
 endif
 PYTHON_LIBRARIES ?= boost_python python2.7
@@ -420,11 +419,15 @@ CXXFLAGS += -pthread -fPIC $(COMMON_FLAGS) $(WARNINGS)
 NVCCFLAGS += -ccbin=$(CXX) -Xcompiler -fPIC $(COMMON_FLAGS)
 # mex may invoke an older gcc that is too liberal with -Wuninitalized
 MATLAB_CXXFLAGS := $(CXXFLAGS) -Wno-uninitialized
-LINKFLAGS += -pthread -fPIC $(COMMON_FLAGS) $(WARNINGS)
+# LINKFLAGS += -pthread -fPIC $(COMMON_FLAGS) $(WARNINGS)
+# http://stackoverflow.com/questions/17841140/os-x-clang-pthread clang requires -pthread when compiling but not when linking.
+LINKFLAGS += -fPIC $(COMMON_FLAGS) $(WARNINGS)
 
 USE_PKG_CONFIG ?= 0
 ifeq ($(USE_PKG_CONFIG), 1)
-	PKG_CONFIG := $(shell pkg-config opencv --libs)
+	# PKG_CONFIG := $(shell pkg-config opencv --libs)
+	PKG_CONFIG := $(shell pkg-config /Users/George/Downloads/Grouped/cv/opencv/build/install/lib/pkgconfig/opencv.pc --libs)
+	echo "PKG_CONFIG := ${PKG_CONFIG}"
 else
 	PKG_CONFIG :=
 endif

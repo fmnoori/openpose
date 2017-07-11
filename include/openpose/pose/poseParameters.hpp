@@ -1,6 +1,9 @@
 #ifndef OPENPOSE_POSE_POSE_PARAMETERS_HPP
 #define OPENPOSE_POSE_POSE_PARAMETERS_HPP
 
+#include <string>
+#include <sstream>
+#include <iostream>
 #include <array>
 #include <map>
 #include <vector>
@@ -36,6 +39,7 @@ namespace op
         {17, "LEar"},
         {18, "Background"}
     };
+    
     const unsigned int POSE_COCO_NUMBER_PARTS               = 18u; // Equivalent to size of std::map POSE_COCO_BODY_PARTS - 1 (removing background)
     const std::vector<unsigned int> POSE_COCO_MAP_IDX       {31,32, 39,40, 33,34, 35,36, 41,42, 43,44, 19,20, 21,22, 23,24, 25,26, 27,28, 29,30, 47,48, 49,50, 53,54, 51,52, 55,56, 37,38, 45,46};
     #define POSE_COCO_PAIRS_RENDER_GPU                      {1,2,   1,5,   2,3,   3,4,   5,6,   6,7,   1,8,   8,9,   9,10,  1,11,  11,12, 12,13,  1,0,   0,14, 14,16,  0,15, 15,17}
@@ -79,6 +83,7 @@ namespace op
         {14, "Chest"},
         {15, "Background"}
     };
+    
     const unsigned int POSE_MPI_NUMBER_PARTS            = 15; // Equivalent to size of std::map POSE_MPI_NUMBER_PARTS - 1 (removing background)
     const std::vector<unsigned int> POSE_MPI_MAP_IDX    {16,17, 18,19, 20,21, 22,23, 24,25, 26,27, 28,29, 30,31, 32,33, 34,35, 36,37, 38,39, 40,41, 42,43};
     #define POSE_MPI_PAIRS_RENDER_GPU                   { 0,1,   1,2,   2,3,   3,4,   1,5,   5,6,   6,7,   1,14,  14,8,  8,9,  9,10,  14,11, 11,12, 12,13}
@@ -122,6 +127,7 @@ namespace op
         {17, "LEar"},
         {22, "Background"},
     };
+
     const unsigned int POSE_BODY_22_NUMBER_PARTS               = 2u; // Equivalent to size of std::map POSE_BODY_22_BODY_PARTS - 1 (removing background)
     const std::vector<unsigned int> POSE_BODY_22_MAP_IDX       {35,36, 43,45};
     #define POSE_BODY_22_PAIRS_RENDER_GPU                      {1,2,   1,5}

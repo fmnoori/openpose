@@ -209,10 +209,10 @@ DOXYGEN_SOURCES += $(DOXYGEN_CONFIG_FILE)
 CXXFLAGS += -march=native
 
 # Complete build flags.
-CXXFLAGS += -fopenmp -Wpedantic -Wall -Wextra
+CXXFLAGS += -Wpedantic -Wall -Wextra #-fopenmp
 CXXFLAGS += -Wfatal-errors
 COMMON_FLAGS += -std=c++11
-LINKFLAGS += -fopenmp
+# LINKFLAGS += -fopenmp
 
 
 ##############################
@@ -374,7 +374,8 @@ CXXFLAGS += -MMD -MP
 COMMON_FLAGS += $(foreach includedir,$(INCLUDE_DIRS),-I$(includedir))
 CXXFLAGS += -pthread -fPIC $(COMMON_FLAGS) $(WARNINGS)
 NVCCFLAGS += -ccbin=$(CXX) -Xcompiler -fPIC $(COMMON_FLAGS)
-LINKFLAGS += -pthread -fPIC $(COMMON_FLAGS) $(WARNINGS)
+# http://stackoverflow.com/questions/17841140/os-x-clang-pthread clang requires -pthread when compiling but not when linking.
+LINKFLAGS += -fPIC $(COMMON_FLAGS) $(WARNINGS) #-pthread
 
 USE_PKG_CONFIG ?= 0
 ifeq ($(USE_PKG_CONFIG), 1)
