@@ -18,7 +18,7 @@ USE_OPENCV := 1
 # ALLOW_LMDB_NOLOCK := 1
 
 # Uncomment if you're using OpenCV 3
-OPENCV_VERSION := 3
+# OPENCV_VERSION := 3
 
 # To customize your choice of compiler, uncomment and set the following.
 # N.B. the default for Linux is g++ and the default for OSX is clang++
@@ -112,9 +112,15 @@ PYTHON_LIB += $(shell brew --prefix numpy)/lib
 # INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include /usr/include/hdf5/serial
 # LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib /usr/lib/x86_64-linux-gnu /usr/lib/x86_64-linux-gnu/hdf5/serial
 INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include 
-INCLUDE_DIRS += /Users/George/Downloads/Grouped/cv/opencv/build/install/include
-LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib
-LIBRARY_DIRS := /Users/George/Downloads/Grouped/cv/opencv/build/install/lib
+# INCLUDE_DIRS += /Users/George/Downloads/Grouped/cv/opencv/build/install/include
+# INCLUDE_DIRS += /Users/George/Downloads/Grouped/cv/opencv/buildOpenPose/install/include
+INCLUDE_DIRS += /Users/George/Downloads/Grouped/cv/opencv-2.4.13/buildOpenPoseGPU/install/include
+
+LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib
+# /usr/lib
+# LIBRARY_DIRS := /Users/George/Downloads/Grouped/cv/opencv/build/install/lib
+# LIBRARY_DIRS := /Users/George/Downloads/Grouped/cv/opencv/buildOpenPose/install/lib
+LIBRARY_DIRS += /Users/George/Downloads/Grouped/cv/opencv-2.4.13/buildOpenPoseGPU/install/lib
 
 # If Homebrew is installed at a non standard location (for example your home directory) and you use it for general dependencies
 # INCLUDE_DIRS += $(shell brew --prefix)/include
@@ -126,7 +132,7 @@ LIBRARY_DIRS := /Users/George/Downloads/Grouped/cv/opencv/build/install/lib
 
 # Uncomment to use `pkg-config` to specify OpenCV library paths.
 # (Usually not necessary -- OpenCV libraries are normally installed in one of the above $LIBRARY_DIRS.)
-USE_PKG_CONFIG := 1
+# USE_PKG_CONFIG := 1
 
 # N.B. both build and distribute dirs are cleared on `make clean`
 BUILD_DIR := build

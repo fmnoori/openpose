@@ -103,8 +103,14 @@ PYTHON_LIB := /usr/lib /usr/local/lib
 # Whatever else you find you need goes here.
 INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include
 INCLUDE_DIRS += ./3rdparty/caffe/distribute/include/
+# INCLUDE_DIRS += /Users/George/Downloads/Grouped/cv/opencv/buildOpenPose/install/include
+INCLUDE_DIRS += /Users/George/Downloads/Grouped/cv/opencv-2.4.13/buildOpenPoseGPU/install/include
+
 LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib
 LIBRARY_DIRS += ./3rdparty/caffe/distribute/lib
+# LIBRARY_DIRS += /Users/George/Downloads/Grouped/cv/opencv/buildOpenPose/install/lib
+LIBRARY_DIRS += /Users/George/Downloads/Grouped/cv/opencv-2.4.13/buildOpenPoseGPU/install/lib
+
 # If Homebrew is installed at a non standard location (for example your home directory) and you use it for general dependencies
 # INCLUDE_DIRS += $(shell brew --prefix)/include
 # LIBRARY_DIRS += $(shell brew --prefix)/lib

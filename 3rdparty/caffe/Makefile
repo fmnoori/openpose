@@ -196,9 +196,9 @@ endif
 ifeq ($(USE_OPENCV), 1)
 	LIBRARIES += opencv_core opencv_highgui opencv_imgproc
 
-	# ifeq ($(OPENCV_VERSION), 3)
-	# 	LIBRARIES += opencv_imgcodecs
-	# endif
+	ifeq ($(OPENCV_VERSION), 3)
+		LIBRARIES += opencv_imgcodecs
+	endif
 
 endif
 PYTHON_LIBRARIES ?= boost_python python2.7
@@ -426,14 +426,19 @@ LINKFLAGS += -fPIC $(COMMON_FLAGS) $(WARNINGS)
 USE_PKG_CONFIG ?= 0
 ifeq ($(USE_PKG_CONFIG), 1)
 	# PKG_CONFIG := $(shell pkg-config opencv --libs)
-	PKG_CONFIG := $(shell pkg-config /Users/George/Downloads/Grouped/cv/opencv/build/install/lib/pkgconfig/opencv.pc --libs)
-	echo "PKG_CONFIG := ${PKG_CONFIG}"
+	PKG_CONFIG := $(shell pkg-config /Users/George/Downloads/Grouped/cv/opencv-2.4.13/buildOpenPoseGPU/install/lib/pkgconfig/opencv.pc --libs)
+	# PKG_CONFIG := $(shell pkg-config /Users/George/Downloads/Grouped/cv/opencv/buildOpenPose/install/lib/pkgconfig/opencv.pc --libs)
 else
 	PKG_CONFIG :=
 endif
 LDFLAGS += $(foreach librarydir,$(LIBRARY_DIRS),-L$(librarydir)) $(PKG_CONFIG) \
 		$(foreach library,$(LIBRARIES),-l$(library))
 PYTHON_LDFLAGS := $(LDFLAGS) $(foreach library,$(PYTHON_LIBRARIES),-l$(library))
+
+$(info PKG_CONFIG=$(PKG_CONFIG))
+$(info librarydir=$(librarydir))
+$(info LDFLAGS=$(LDFLAGS))
+$(info INCLUDE_DIRS=$(INCLUDE_DIRS))
 
 # 'superclean' target recursively* deletes all files ending with an extension
 # in $(SUPERCLEAN_EXTS) below.  This may be useful if you've built older

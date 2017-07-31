@@ -1,5 +1,5 @@
 PROJECT := openpose
-
+# $(info ************  TADA! ************)
 CONFIG_FILE := Makefile.config
 # Explicitly check for the config file, otherwise make -k will proceed anyway.
 ifeq ($(wildcard $(CONFIG_FILE)),)
@@ -65,7 +65,7 @@ else ifeq ($(DEEP_NET), torch)
 else
 	COMMON_FLAGS += -DUSE_CAFFE
 	LIBRARIES += caffe
-	LDFLAGS += -Wl,-rpath=$(CAFFE_DIR)/lib
+	# LDFLAGS += -Wl,-rpath=$(CAFFE_DIR)/lib
 	INCLUDE_DIRS += $(CAFFE_DIR)/include
 	LIBRARY_DIRS += $(CAFFE_DIR)/lib
 endif
@@ -170,6 +170,8 @@ ifeq ($(USE_OPENCV), 1)
 
 endif
 WARNINGS := -Wall -Wno-sign-compare
+
+$(info LIBRARIES=$(LIBRARIES))
 
 ##############################
 # Set build directories
@@ -387,6 +389,9 @@ endif
 # 		$(foreach library,$(LIBRARIES),-l$(library)) -Wl,-rpath=$(CAFFE_DIR)/lib
 LDFLAGS += $(foreach librarydir,$(LIBRARY_DIRS),-L$(librarydir)) $(PKG_CONFIG) \
 		$(foreach library,$(LIBRARIES),-l$(library))
+$(info PKG_CONFIG=$(PKG_CONFIG))
+$(info librarydir=$(librarydir))
+$(info LDFLAGS=$(LDFLAGS))
 
 ##############################
 # Define build targets
